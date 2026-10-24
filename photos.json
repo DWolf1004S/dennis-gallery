@@ -1,0 +1,4 @@
+[
+    { "id": 1, "url": "https://picsum.photos/id/10/600/800", "category": "ceremony", "likes": 0, "downloads": 0 },
+    { "id": 2, "url": "https://picsum.photos/id/20/600/800", "category": "family", "likes": 0, "downloads": 0 }
+]

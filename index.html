@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DENNIS SPEKTOR | Fine Art Photography</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Montserrat:wght@200;300;400&display=swap');
+
+        :root {
+            --bg-color: #fafafa;
+            --text-main: #1a1a1a;
+            --text-muted: #888;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        .logo-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        .gallery-container {
+            column-count: 1;
+            column-gap: 2rem;
+        }
+        @media (min-width: 640px) { .gallery-container { column-count: 2; } }
+        @media (min-width: 1024px) { .gallery-container { column-count: 3; } }
+
+        .photo-card {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .photo-card img {
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: grayscale(30%);
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.03);
+            filter: grayscale(0%);
+        }
+
+        .photo-overlay {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            transform: translateY(10px);
+        }
+
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; }
+        ::-webkit-scrollbar-thumb:hover { background: #999; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="py-24 px-4 text-center">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16">
+                <h1 class="logo-font text-4xl md:text-6xl tracking-[0.4em] uppercase font-light text-gray-900">
+                    Dennis Spektor
+                </h1>
+                <div class="flex items-center justify-center gap-6 mt-6">
+                    <div class="h-[1px] w-12 bg-gray-300"></div>
+                    <span class="text-[10px] tracking-[0.6em] uppercase text-gray-400 font-light">Fine Art Photography</span>
+                    <div class="h-[1px] w-12 bg-gray-300"></div>
+                </div>
+            </div>
+
+            <nav class="flex justify-center gap-10 text-[11px] tracking-[0.2em] uppercase text-gray-400 font-light">
+                <button onclick="filterPhotos('all')" class="hover:text-black transition-colors duration-300 cursor-pointer">Collection</button>
+                <button onclick="filterPhotos('ceremony')" class="hover:text-black transition-colors duration-300 cursor-pointer">Ceremony</button>
+                <button onclick="filterPhotos('family')" class="hover:text-black transition-colors duration-300 cursor-pointer">Family</button>
+                <button onclick="filterPhotos('party')" class="hover:text-black transition-colors duration-300 cursor-pointer">Celebration</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-32">
+        <div id="gallery" class="gallery-container">
+            <!-- Photos injected here -->
+        </div>
+    </main>
+
+    <footer class="py-24 border-t border-gray-100 text-center bg-white">
+        <div class="flex flex-col items-center gap-10">
+            <a href="https://instagram.com/den1004s" target="_blank" class="group flex flex-col items-center gap-3 transition-all duration-500">
+                <div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:border-black group-hover:text-black transition-all duration-500">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <span class="text-[10px] tracking-[0.3em] uppercase text-gray-400 group-hover:text-black transition-colors font-light">Instagram</span>
+            </a>
+            <p class="text-[9px] tracking-[0.4em] text-gray-300 uppercase font-light">
+                &copy; 2026 Dennis Spektor. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        let photos = [];
+
+        async function loadPhotos() {
+            try {
+                const response = await fetch('photos.json');
+                if (!response.ok) throw new Error('JSON not found');
+                const data = await response.json();
+
+                if (data && data.length > 0) {
+                    photos = data;
+                    renderGallery();
+                } else {
+                    throw new Error('JSON empty');
+                }
+            } catch (error) {
+                console.log('Loading Fine Art placeholders for visual confirmation...');
+                photos = [
+                    { id: 1, url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&h=800&auto=format&fit=crop', category: 'ceremony', likes: 120, downloads: 40 },
+                    { id: 2, url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&h=400&auto=format&fit=crop', category: 'family', likes: 85, downloads: 20 },
+                    { id: 3, url: 'https://images.unsplash.com/photo-1465495910487-5977ffbf6755?q=80&w=600&h=900&auto=format&fit=crop', category: 'party', likes: 210, downloads: 90 },
+                    { id: 4, url: 'https://images.unsplash.com/photo-1519225421980-7159a1762f87?q=80&w=600&h=700&auto=format&fit=crop', category: 'ceremony', likes: 140, downloads: 50 },
+                    { id: 5, url: 'https://images.unsplash.com/photo-1520856743977-134007274965?q=80&w=600&h=500&auto=format&fit=crop', category: 'family', likes: 90, downloads: 30 },
+                    { id: 6, url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&h=800&auto=format&fit=crop', category: 'party', likes: 160, downloads: 70 },
+                ];
+                renderGallery();
+            }
+        }
+
+        function renderGallery(filter = 'all') {
+            const gallery = document.getElementById('gallery');
+            if (!gallery) return;
+            gallery.innerHTML = '';
+
+            const filteredPhotos = filter === 'all' ? photos : photos.filter(p => p.category === filter);
+
+            filteredPhotos.forEach(photo => {
+                gallery.innerHTML += `
+                    <div class="photo-card group cursor-pointer">
+                        <img src="${photo.url}" alt="Fine Art" class="w-full h-auto shadow-sm">
+                        <div class="photo-overlay absolute inset-0 flex flex-col justify-center items-center p-6">
+                            <div class="flex gap-8 text-gray-500">
+                                <button onclick="handleLike(${photo.id})" class="flex items-center gap-2 hover:text-black transition-colors duration-300">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <span class="text-xs font-light tracking-widest">${photo.likes}</span>
+                                </button>
+                                <button onclick="handleDownload(${photo.id})" class="flex items-center gap-2 hover:text-black transition-colors duration-300">
+                                    <i class="fa-solid fa-arrow-down"></i>
+                                    <span class="text-xs font-light tracking-widest">${photo.downloads}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterPhotos(category) {
+            renderGallery(category);
+        }
+
+        function handleLike(id) {
+            const photo = photos.find(p => p.id === id);
+            if (photo) {
+                photo.likes++;
+                renderGallery();
+            }
+        }
+
+        function handleDownload(id) {
+            alert('Downloading high-resolution masterpiece...');
+        }
+
+        loadPhotos();
+    </script>
+</body>
+</html>

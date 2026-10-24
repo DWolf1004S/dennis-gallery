@@ -13,7 +13,7 @@
         .logo-font { font-family: "Cinzel", serif; }
         .gallery-container { column-count: 1; column-gap: 2rem; }
         @media (min-width: 640px) { .gallery-container { column-count: 2; } }
-        @//media (min-width: 1024px) { .gallery-container { column-count: 3; } }
+        @media (min-width: 1024px) { .gallery-container { column-count: 3; } }
         .photo-card { break-inside: avoid; margin-bottom: 2rem; position: relative; overflow: hidden; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .photo-card img { transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); filter: grayscale(30%); }
         .photo-card:hover img { transform: scale(1.03); filter: grayscale(0%); }
@@ -25,7 +25,7 @@
     <header class="py-24 px-4 text-center">
         <div class="max-w-5xl mx-auto">
             <div class="mb-16">
-                <h1 class="logo-font text-4xl md:text-6xl tracking-[0.4em] uppercase font-light text-gray-900">Dennis Spektor</h1>
+                <h1 class="logo-//font text-4xl md:text-6xl tracking-[0.4em] uppercase font-light text-gray-900">Dennis Spektor</h1>
                 <div class="flex items-center justify-center gap-6 mt-6">
                     <div class="h-[1px] w-12 bg-gray-300"></div>
                     <span class="text-[10px] tracking-[0.6em] uppercase text-gray-400 font-light">Fine Art Photography</span>
@@ -44,20 +44,32 @@
                 <div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:border-black group-hover:text-black transition-all duration-500">
                     <i class="fa-brands fa-instagram"></i>
                 </div>
-                <span class="text-[10px] tracking-[0.3em] uppercase text-gray-400 group-hover:text-black transition-colors font-//light">Instagram</span>
+                <span class="text-[10px] tracking-[0.3em] uppercase text-gray-400 group-hover:text-black transition-colors font-light">Instagram</span>
             </a>
             <p class="text-[9px] tracking-[0.4em] text-gray-300 uppercase font-light">&copy; 2026 Dennis Spektor. All Rights Reserved.</p>
         </div>
     </footer>
     <script>
-        // THESE ARE HIGH-END DEMO PHOTOS. Replace the URLs with ImgBB links later.
+        // EMBEDDED PHOTOS TO AVOID ANY LOADING ERRORS
         const photos = [
-            { id: 1, url: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800", category: "Ceremony", likes: 12, downloads: 5 },
-            { id: 2, url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800", category: "Family", likes: 8, downloads: 3 },
-            { id: 3, url: "https://images.unsplash.com/photo-1465495910487-5977ffbf6755?q=80&w=800", category: "Celebration", likes: 25, downloads: 10 },
-            { id: 4, url: "https://images.unsplash.com/photo-1519225421980-7159a1762f87?q=80&w=800", category: "Ceremony", likes: 15, downloads: 7 },
-            { id: 5, url: "https://images.unsplash.com/photo-1520856743977-134007274965?q=80&w=800", category: "Family", likes: 20, downloads: 12 },
-            { id: 6, url: "https://images.unsplash.com/photo-151//9741497674-611481863552?q=80&w=800", category: "Celebration", likes: 30, downloads: 15 },
+            { id: 1, url: "https://i.ibb.co/vV78jP7/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 2, url: "https://i.ibb.co/pL1mS6B/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 3, url: "https://i.ibb.co/S3qN3rX/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 4, url: "https://i.ibb.co/ZQ1HZh1/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 5, url: "https://i.ibb.co/0p8LN3yQ/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 6, url: "https://i.ibb.co/1Jb3MVQk/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 7, url: "https://i.ibb.co/NnxLdxCt/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 8, url: "https://i.ibb.co/RpFdw8W0/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 9, url: "https://i.ibb.co/Y7HYKW97/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 10, url: "https://i.ibb.co/v4xzgmbF/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 11, url: "https://i.ibb.co/kghHHTkV/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 12, url: "https://i.ibb.co/CfXLrkN/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 13, url: "https://i.ibb.co/ycDgykzM/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 14, url: "https://i.ibb.co/Vc33yRK7/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 15, url: "https://i.ibb.co/fzfz2CKq/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 16, url: "https://i.ibb.co/PZnt15GN/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 17, url: "https://i.ibb.co/HpPZ3jX9/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 },
+            { id: 18, url: "https://i.ibb.co/rGLkQnFt/image.jpg", category: "Unforgettable", likes: 0, downloads: 0 }
         ];
 
         function setupCategories() {
@@ -89,7 +101,7 @@
                                 </button>
                                 <button onclick="handleDownload(${photo.id})" class="flex items-center gap-2 hover:text-black transition-colors duration-300">
                                     <i class="fa-solid fa-arrow-down"></i>
-                                    <span class="text-//xs font-light tracking-widest">${photo.downloads}</span>
+                                    <span class="text-xs font-light tracking-widest">${photo.downloads}</span>
                                 </button>
                             </div>
                         </div>
